@@ -2,8 +2,16 @@ import {
   Avatar,
   Box,
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
   Image,
   Input,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,21 +22,201 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { bell, cart, heart, logo, search } from "../assets";
+import {
+  useNavigate,
+  useSearchParams,
+  Link as NewLink,
+} from "react-router-dom";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../Redux/authReducer/action";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { isAuth, users } = useSelector((store) => {
+    return {
+      isAuth: store.loginReducer.isAuth,
+      users: store.loginReducer.users,
+    };
+  }, shallowEqual);
+
+  const [category, setCategory] = useState(
+    searchParams.getAll("category") || ""
+  );
+  const navigate = useNavigate();
+
+  const handleLinkClick = (category) => {
+    setCategory(category);
+    setSearchParams({ category: category });
+    navigate(`/products/${category}`);
+  };
+
+  useEffect(() => {
+    let params = {
+      category,
+    };
+    setSearchParams(params);
+  }, [category]);
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDrawerOpen,
+    onOpen: onDrawerOpen,
+    onClose: onDrawerClose,
+  } = useDisclosure();
+  const btnRef = useRef();
   return (
     <>
       <Box
         display="flex"
-        justifyContent={{ base: "space-between", sm: "space-around" }}
+        justifyContent={{
+          base: "space-between",
+          sm: "space-between",
+          md: "space-between",
+          lg: "space-around",
+        }}
         flexDirection={{ base: "row", sm: "row", lg: "row" }}
         alignItems={{ base: "center", sm: "flex-start", lg: "baseline" }}
-        padding="10px"
+        p="10px"
         // boxShadow="md"
       >
+        {/* Hamburger */}
+        <Box display={{ base: "block", sm: "block", md: "block", lg: "none" }}>
+          <HamburgerIcon ref={btnRef} colorScheme="teal" onClick={onDrawerOpen}>
+            Open
+          </HamburgerIcon>
+          <Drawer
+            isOpen={isDrawerOpen}
+            placement="left"
+            onClose={onDrawerClose}
+            finalFocusRef={btnRef}
+          >
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerHeader textDecoration="underline">
+                Select Product category
+              </DrawerHeader>
+              <DrawerCloseButton />
+              <DrawerBody>
+                <Box
+                  h="100%"
+                  fontWeight="semibold"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="space-around"
+                >
+                  <Link
+                    to={`/products/Sofas`}
+                    onClick={() => handleLinkClick("Sofa")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Sofa
+                  </Link>
+                  <Link
+                    to={`/products/Sectional Sofas`}
+                    onClick={() => handleLinkClick("Sectional Sofas")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Sectional Sofas
+                  </Link>
+                  <Link
+                    to={`/products/Sofa Cum Beds`}
+                    onClick={() => handleLinkClick("Sofa Cum Beds")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Sofa Cum Beds
+                  </Link>
+                  <Link
+                    to={`/products/Futons`}
+                    onClick={() => handleLinkClick("Futons")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Futons
+                  </Link>
+                  <Link
+                    to={`/products/Chaise Loungers`}
+                    onClick={() => handleLinkClick("Chaise Loungers")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Chaise Loungers
+                  </Link>
+                  <Link
+                    to={`/products/Bean Bags`}
+                    onClick={() => handleLinkClick("Bean Bags")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Bean Bags
+                  </Link>
+                  <Link
+                    to={`/products/Recliners`}
+                    onClick={() => handleLinkClick("Recliners")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Recliners
+                  </Link>
+                  <Link
+                    to={`/products/Gaming Chairs`}
+                    onClick={() => handleLinkClick("Gaming Chairs")}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      color: "white",
+                    }}
+                  >
+                    Gaming Chairs
+                  </Link>
+                  <Link
+                    to={`/products/Chairs`}
+                    onClick={() => handleLinkClick("Chairs")}
+                    _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                  >
+                    Chairs
+                  </Link>
+                </Box>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        </Box>
+
         {/* Search  */}
         <Box>
           <Input
@@ -43,25 +231,27 @@ const Navbar = () => {
 
         {/* Logo */}
         <Box>
-          <Image
-            _hover={{ cursor: "pointer" }}
-            src={logo}
-            alt="Logo"
-            width="7rem"
-            transform="scale(1.2)"
-          />
+          <NewLink to="/">
+            <Image
+              _hover={{ cursor: "pointer" }}
+              src={logo}
+              alt="Logo"
+              width={{ base: "7rem", sm: "7rem" }}
+              transform="scale(1.2)"
+            />
+          </NewLink>
         </Box>
 
         {/* All links */}
 
         <Box
-          w={{ base: "10rem", sm: "14rem" }}
+          w={{ base: "12rem", sm: "14rem" }}
           display="flex"
-          justifyContent="space-around"
-          alignItems="baseline"
+          justifyContent="space-between"
+          alignItems="center"
         >
           <Box display={{ sm: "none" }}>
-            <Image onClick={onOpen} src={search} w={{ base: "5", md: "7" }} />
+            <Image onClick={onOpen} src={search} w={{ base: "7", md: "7" }} />
 
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
@@ -79,175 +269,207 @@ const Navbar = () => {
               </ModalContent>
             </Modal>
           </Box>
-          <Avatar
-            _hover={{ cursor: "pointer" }}
-            size={{ base: "xs", sm: "sm" }}
-            name=""
-            src="https://bit.ly/dan-abramov"
-          />
-          <Image
-            _hover={{ cursor: "pointer" }}
-            src={bell}
-            alt="notification"
-            w={{ base: "24px", sm: "32px" }}
-          />
-          <Image
-            _hover={{ cursor: "pointer" }}
-            src={heart}
-            alt="notification"
-            w={{ base: "24px", sm: "32px" }}
-          />
-          <Image
-            _hover={{ cursor: "pointer" }}
-            src={cart}
-            alt="notification"
-            w={{ base: "24px", sm: "32px" }}
-          />
+          {isAuth ? (
+            <>
+              <Avatar name={users.name} src="" size="sm" />
+              <Button onClick={handleLogout} size="sm">
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Button onClick={handleLogin}>Login</Button>
+          )}
+          <NewLink to="/notification">
+            <Image
+              _hover={{ cursor: "pointer" }}
+              src={bell}
+              alt="notification"
+              w={{ base: "24px", sm: "32px" }}
+            />
+          </NewLink>
+          <NewLink to="/wishlist">
+            <Image
+              _hover={{ cursor: "pointer" }}
+              src={heart}
+              alt="notification"
+              w={{ base: "24px", sm: "32px" }}
+            />
+          </NewLink>
+          <NewLink to="/cart">
+            <Image
+              _hover={{ cursor: "pointer" }}
+              src={cart}
+              alt="notification"
+              w={{ base: "24px", sm: "32px" }}
+            />
+          </NewLink>
         </Box>
       </Box>
 
-      <Box display="flex" justifyContent="space-around" p={3}>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          SELL ON PEPPERFRY
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          BECOME A FRANCHISEE
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          BUY IN BULK
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          FIND A STUDIO
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          GIFT CARDS
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          GET INSPIRED
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          TRACK YOUR ORDER
-        </Text>
-        <Text
-          fontSize={14}
-          fontFamily={"monospace"}
-          _hover={{ textDecoration: "underline", cursor: "pointer" }}
-        >
-          CONTACT US
-        </Text>
-      </Box>
+      <Box display={{ base: "none", sm: "none", md: "none", lg: "block" }}>
+        <Box display="flex" justifyContent="space-around" p={3}>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            SELL ON PEPPERFRY
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            BECOME A FRANCHISEE
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            BUY IN BULK
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            FIND A STUDIO
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            GIFT CARDS
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            GET INSPIRED
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            TRACK YOUR ORDER
+          </Text>
+          <Text
+            fontSize={14}
+            fontFamily={"monospace"}
+            _hover={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            CONTACT US
+          </Text>
+        </Box>
 
-      <Box
-        backgroundColor="blackAlpha.600"
-        p={2}
-        color="whitesmoke"
-        fontWeight="semibold"
-        display="flex"
-        justifyContent="space-around"
-      >
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
+        <Box
+          backgroundColor="blackAlpha.600"
+          p={2}
+          color="whitesmoke"
+          fontWeight="semibold"
+          display="flex"
+          justifyContent="space-around"
         >
-          Sofa
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Sectional Sofas
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Sofa Cum Beds
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Futons
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Chaise Loungers
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Bean Bags
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Recliners
-        </Text>
-        <Text
-          _hover={{
-            cursor: "pointer",
-            textDecoration: "underline",
-            color: "white",
-          }}
-        >
-          Sofa Chairs
-        </Text>
-        <Text _hover={{ cursor: "pointer", textDecoration: "underline" }}>
-          Chairs
-        </Text>
+          <Link
+            to={`/products/Sofas`}
+            onClick={() => handleLinkClick("Sofa")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Sofa
+          </Link>
+          <Link
+            to={`/products/Sectional Sofas`}
+            onClick={() => handleLinkClick("Sectional Sofas")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Sectional Sofas
+          </Link>
+          <Link
+            to={`/products/Sofa Cum Beds`}
+            onClick={() => handleLinkClick("Sofa Cum Beds")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Sofa Cum Beds
+          </Link>
+          <Link
+            to={`/products/Futons`}
+            onClick={() => handleLinkClick("Futons")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Futons
+          </Link>
+          <Link
+            to={`/products/Chaise Loungers`}
+            onClick={() => handleLinkClick("Chaise Loungers")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Chaise Loungers
+          </Link>
+          <Link
+            to={`/products/Bean Bags`}
+            onClick={() => handleLinkClick("Bean Bags")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Bean Bags
+          </Link>
+          <Link
+            to={`/products/Recliners`}
+            onClick={() => handleLinkClick("Recliners")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Recliners
+          </Link>
+          <Link
+            to={`/products/Gaming Chairs`}
+            onClick={() => handleLinkClick("Gaming Chairs")}
+            _hover={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "white",
+            }}
+          >
+            Gaming Chairs
+          </Link>
+          <Link
+            to={`/products/Chairs`}
+            onClick={() => handleLinkClick("Chairs")}
+            _hover={{ cursor: "pointer", textDecoration: "underline" }}
+          >
+            Chairs
+          </Link>
+        </Box>
       </Box>
     </>
   );

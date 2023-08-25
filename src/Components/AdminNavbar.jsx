@@ -1,9 +1,18 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Button, Image } from "@chakra-ui/react";
 import React from "react";
 import { logo } from "../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../Redux/authReducer/action";
 
 const AdminNavbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  };
   return (
     <Box
       display="flex"
@@ -26,6 +35,7 @@ const AdminNavbar = () => {
         <Link to="/adminProducts">Products</Link>
         <Link to="/adminUsers">Users</Link>
         <Link to="/addAdmin">Admin</Link>
+        <Button onClick={handleLogout}>Logout</Button>
       </Box>
     </Box>
   );

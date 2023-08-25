@@ -27,6 +27,7 @@ const Admin = () => {
 
   return (
     <Box>
+      <AdminNavbar />
       <Center m={10}>
         <Button>Refresh Sales</Button>
       </Center>

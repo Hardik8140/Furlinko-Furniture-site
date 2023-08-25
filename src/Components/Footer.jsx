@@ -175,27 +175,27 @@ const Footer = () => {
           </Heading>
           <Box display="flex" gap="10px">
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii2.pepperfry.com/assets/w23-pf-social-insta.png"
             />
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii1.pepperfry.com/assets/w23-pf-social-fb.png"
             />
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii3.pepperfry.com/assets/w23-pf-social-pinterest.png"
             />
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii3.pepperfry.com/assets/w23-pf-social-linkedin.png"
             />
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii1.pepperfry.com/assets/w23-pf-social-youtube.png"
             />
             <Image
-              w={{ base: "2rem", md: "2rem", lg: "3rem" }}
+              w={{ base: "2rem", md: "2rem", lg: "2rem" }}
               src="https://ii2.pepperfry.com/assets/w23-pf-social-twitter.png"
             />
           </Box>

@@ -9,54 +9,18 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
 import { getProduct } from "../Redux/Home/action";
 
 const HomePage = () => {
-  const homeProduct = useSelector((store) => store.homeReducer.homeProduct);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
-
-  var settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   return (
     <>
@@ -69,24 +33,37 @@ const HomePage = () => {
 
       {/* Second Section */}
       <Center>
-        <Box w="70%" mt={7} mb="6rem">
+        <Box
+          w={{ base: "90%", sm: "70%" }}
+          mt={7}
+          mb={{ base: "3rem", sm: "6rem" }}
+        >
           <SimpleGrid columns={2}>
             <Box>
-              <Text color="goldenrod">CABINET OF FURNITURE</Text>
-              <Heading as="h3" size="lg">
+              <Text
+                color="goldenrod"
+                fontSize={{ base: "x-small", sm: "medium" }}
+              >
+                CABINET OF FURNITURE
+              </Text>
+              <Heading as="h3" size={{ base: "sm", sm: "lg" }}>
                 Catalog of Our Products
               </Heading>
-              <Text fontSize={"xs"} mt={2} mb={2}>
-                You wil find heaven for your interior <br /> beautifully dyed
-                cotton or cloths <br /> dwarfs, one for each boy in the family
+              <Text fontSize={{ base: "xx-small", sm: "md" }} mt={2} mb={2}>
+                You wil find heaven for your interior beautifully dyed cotton or
+                cloths dwarfs, one for each boy in the family
               </Text>
-              <SimpleGrid columns={2} gap={3} mt={4}>
+              <SimpleGrid columns={2} gap={2} mt={4}>
                 <Box>
                   <Image
                     w="90%"
                     src="https://ii1.pepperfry.com/media/catalog/product/a/l/494x544/alcalde-wing-chair-in-velvet-wine-red-colour-by-casacraft-alcalde-wing-chair-in-velvet-wine-red-colo-u1qnyy.jpg"
                   />
-                  <Text fontWeight="semibold" textDecoration="underline">
+                  <Text
+                    fontWeight="semibold"
+                    fontSize={{ base: "xx-small", sm: "md" }}
+                    textDecoration="underline"
+                  >
                     Sofa Chair <ArrowForwardIcon />
                   </Text>
                 </Box>
@@ -95,7 +72,11 @@ const HomePage = () => {
                     w="90%"
                     src="https://ii1.pepperfry.com/media/catalog/product/2/0/494x544/200gsm-polycotton-single-bed-sheet-with-1-pillow-cover-200gsm-polycotton-single-bed-sheet-with-1-pil-dlzjqd.jpg"
                   />
-                  <Text fontWeight="semibold" textDecoration="underline">
+                  <Text
+                    fontWeight="semibold"
+                    fontSize={{ base: "xx-small", sm: "md" }}
+                    textDecoration="underline"
+                  >
                     Bed <ArrowForwardIcon />
                   </Text>
                 </Box>
@@ -104,7 +85,11 @@ const HomePage = () => {
                     w="90%"
                     src="https://ii2.pepperfry.com/assets/abd59da2-16cd-4174-b4f3-90db68f67f0d.jpg"
                   />
-                  <Text fontWeight="semibold" textDecoration="underline">
+                  <Text
+                    fontWeight="semibold"
+                    fontSize={{ base: "xx-small", sm: "md" }}
+                    textDecoration="underline"
+                  >
                     Center Table <ArrowForwardIcon />
                   </Text>
                 </Box>
@@ -113,7 +98,11 @@ const HomePage = () => {
                     w="90%"
                     src="https://ii3.pepperfry.com/assets/3e4b8d35-3ac4-4426-8a10-cca2558dcf5e.jpg"
                   />
-                  <Text fontWeight="semibold" textDecoration="underline">
+                  <Text
+                    fontWeight="semibold"
+                    fontSize={{ base: "xx-small", sm: "md" }}
+                    textDecoration="underline"
+                  >
                     Been Bag <ArrowForwardIcon />
                   </Text>
                 </Box>
@@ -121,7 +110,7 @@ const HomePage = () => {
             </Box>
             <Box>
               <Image
-                aspectRatio="3/4"
+                aspectRatio={{ base: "2/4", sm: "3/5", md: "3/6", lg: "3/5" }}
                 src="https://ii2.pepperfry.com/assets/613f3574-2ff2-4c53-a6cc-162c0852b58d.jpg"
               />
             </Box>
@@ -131,11 +120,14 @@ const HomePage = () => {
 
       {/* Third Section */}
       <Center>
-        <Box w="70%" mb="6rem">
+        <Box w={{ base: "90%", sm: "70%" }} mb={{ base: "3rem", sm: "6rem" }}>
           <SimpleGrid columns={2} gap={5}>
             <Box>
-              <Text fontSize={"5xl"} fontFamily="inherit">
-                PROJECT YOUR <br /> IMPLEMENTATION <br /> OURS
+              <Text
+                fontSize={{ base: "sm", sm: "2xl", md: "2xl", lg: "4xl" }}
+                fontFamily="inherit"
+              >
+                PROJECT YOUR IMPLEMENTATION OURS
               </Text>
               <Image
                 aspectRatio="3/1.9"
@@ -151,7 +143,9 @@ const HomePage = () => {
 
       <Center>
         <Box>
-          <Heading>Buyers Choice</Heading>
+          <Heading as="h4" size="md">
+            Buyers Choice
+          </Heading>
           {/* <Slider {...settings} />
           <Box>
             <Image src="https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_clp_category_360_9.jpg" />
@@ -226,16 +220,22 @@ const HomePage = () => {
       </Box>
 
       <Center>
-        <Box w="70%" display="flex" gap={8} mb={10} mt={10}>
+        <Box
+          w={{ base: "90%", sm: "70%" }}
+          display="flex"
+          gap={8}
+          mb={10}
+          mt={10}
+        >
           <Box w="50%">
             <Image
               aspectRatio="5/3"
               src="https://ii3.pepperfry.com/assets/2e8c49b4-5ec4-41ba-b0dc-d9f5076c11ae.jpg"
             />
-            <Heading as="h3" size="lg">
+            <Heading as="h3" size={{ base: "sm", sm: "lg" }}>
               Furniture Factory Wood Fans
             </Heading>
-            <Text fontSize={"md"} mt={2} mb={2}>
+            <Text fontSize={{ base: "sm", sm: "md" }} mt={2} mb={2}>
               This is the place where you will always be helped to choose the
               fabric for the sofa or bed. determine the size and enliven the
               interior with textile decor
@@ -244,16 +244,16 @@ const HomePage = () => {
 
           <Box w="60%">
             <Box>
-              <Heading as="h3" size="lg">
+              <Heading as="h3" size={{ base: "sm", sm: "lg" }}>
                 Theoretical Collapse
               </Heading>
-              <Text fontSize={"md"} mt={2} mb={2}>
+              <Text fontSize={{ base: "sm", sm: "md" }} mt={2} mb={2}>
                 A crisis of legitimacy is usually predictable <br /> As already
                 noted the landscape park <br /> repels the capitalist world
                 society
               </Text>
             </Box>
-            <SimpleGrid columns={2} gap={10}>
+            <SimpleGrid columns={2} gap={{ base: "5", sm: "10" }}>
               <Image src="https://ii2.pepperfry.com/media/catalog/product/a/c/494x544/aciano-fabric-full-back-lounge-chair-in-floral-print-aciano-fabric-full-back-lounge-chair-in-floral--dog25f.jpg" />
               <Image src="https://ii2.pepperfry.com/media/catalog/product/u/n/494x544/unique-pu-velvet---fabric-dining-chair-with-black-metal-powdered-coated-base-in-light-blue---multi-c-bhwn8l.jpg" />
             </SimpleGrid>
@@ -262,7 +262,13 @@ const HomePage = () => {
       </Center>
 
       <Center>
-        <SimpleGrid columns={4} width="70%" gap={7} mt={9} mb={9}>
+        <SimpleGrid
+          columns={{ base: "1", sm: "2", md: "4" }}
+          width="70%"
+          gap={7}
+          mt={9}
+          mb={9}
+        >
           <Box>
             <Heading as="h2" size="md">
               Video on YouTube
@@ -315,7 +321,7 @@ const HomePage = () => {
       </Center>
 
       <Center>
-        <Box w="70%" mt={8} mb={8}>
+        <Box w={{ base: "90%", sm: "70%" }} mt={8} mb={8}>
           <Image
             aspectRatio="3/1"
             src="https://ii1.pepperfry.com/assets/w23-pf-modular-page-banner-1280.jpg"
@@ -324,7 +330,12 @@ const HomePage = () => {
       </Center>
 
       <Center>
-        <SimpleGrid columns={3} gap={8} w="70%" mb={8}>
+        <SimpleGrid
+          columns={{ base: "1", sm: "3" }}
+          gap={{ base: "6", sm: "8" }}
+          w={{ base: "90%", sm: "70%" }}
+          mb={8}
+        >
           <Box>
             <Image
               aspectRatio="3/3"
