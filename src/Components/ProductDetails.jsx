@@ -87,9 +87,27 @@ const ProductDetails = () => {
             </Box>
 
             <Divider />
-            <Box>
-              <Button onClick={handleAddToCartByProduct}>Add to Cart</Button>
-              <Button onClick={handleBuyNow}>Buy Now</Button>
+            <Box
+              w="50%"
+              mt={5}
+              mb={5}
+              display="flex"
+              justifyContent="space-between"
+            >
+              <Button
+                onClick={handleAddToCartByProduct}
+                border="1px solid lightgray"
+                backgroundColor="white"
+              >
+                Add to Cart
+              </Button>
+              <Button
+                onClick={handleBuyNow}
+                border="1px solid lightgray"
+                backgroundColor="white"
+              >
+                Buy Now
+              </Button>
             </Box>
             {/* Accordion */}
             <Box>
