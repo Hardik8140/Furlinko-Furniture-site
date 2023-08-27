@@ -11,7 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { createAccount, loginUser } from "../Redux/authReducer/action";
@@ -29,6 +29,7 @@ import { LOGIN_FAILURE } from "../Redux/authReducer/actionTypes";
 export default function LoginAndRegisterPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const toast = useToast();
   const {
     register,
@@ -76,7 +77,7 @@ export default function LoginAndRegisterPage() {
       });
     }
   };
-
+  console.log(location);
   const onLoginSubmit = (dat) => {
     const email = dat.Email;
     const password = dat.Password;
@@ -92,7 +93,7 @@ export default function LoginAndRegisterPage() {
           duration: 2000,
           isClosable: true,
         });
-        navigate("/");
+        navigate(location.state, { replace: true });
         document.getElementById("loginform").reset();
       })
       .catch((err) => {

@@ -9,10 +9,10 @@ const AdminNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   dispatch(logoutUser());
+  //   navigate("/");
+  // };
   return (
     <Box
       display="flex"
@@ -20,11 +20,10 @@ const AdminNavbar = () => {
       justifyContent="space-around"
       alignItems="baseline"
       boxShadow="md"
-      p={2}
     >
-      <Link to="/">
+      {/* <Link to="/">
         <Image src={logo} w="8rem" />
-      </Link>
+      </Link> */}
       <Box
         w="50%"
         display="flex"
@@ -35,7 +34,7 @@ const AdminNavbar = () => {
         <Link to="/adminProducts">Products</Link>
         <Link to="/adminUsers">Users</Link>
         <Link to="/addAdmin">Admin</Link>
-        <Button onClick={handleLogout}>Logout</Button>
+        {/* <Button onClick={handleLogout}>Logout</Button> */}
       </Box>
     </Box>
   );

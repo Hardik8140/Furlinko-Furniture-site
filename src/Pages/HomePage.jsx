@@ -110,7 +110,7 @@ const HomePage = () => {
             </Box>
             <Box>
               <Image
-                aspectRatio={{ base: "2/4", sm: "3/5", md: "3/6", lg: "3/5" }}
+                aspectRatio={{ base: "2/4", sm: "3/5", md: "3/6", lg: "3/4" }}
                 src="https://ii2.pepperfry.com/assets/613f3574-2ff2-4c53-a6cc-162c0852b58d.jpg"
               />
             </Box>
@@ -124,7 +124,7 @@ const HomePage = () => {
           <SimpleGrid columns={2} gap={5}>
             <Box>
               <Text
-                fontSize={{ base: "sm", sm: "2xl", md: "2xl", lg: "4xl" }}
+                fontSize={{ base: "sm", sm: "3xl", md: "4xl", lg: "5xl" }}
                 fontFamily="inherit"
               >
                 PROJECT YOUR IMPLEMENTATION OURS

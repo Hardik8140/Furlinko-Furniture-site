@@ -1,57 +1,47 @@
-import React, { useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../Redux/Home/action";
-import { useParams, useSearchParams } from "react-router-dom";
+import React from "react";
+import { styled } from "styled-components";
+import SideBar from "../Components/SideBar";
+import ProductList from "../Components/ProductList";
 
 const ProductPage = () => {
-  let dispatch = useDispatch();
-  const { homeProduct, isLoading } = useSelector((store) => {
-    return {
-      homeProduct: store.homeReducer.homeProduct,
-      isLoading: store.homeReducer.isLoading,
-    };
-  }, shallowEqual);
-  const [searchParams] = useSearchParams();
-  const { category } = useParams();
+  // let dispatch = useDispatch();
+  // const { homeProduct, isLoading } = useSelector((store) => {
+  //   return {
+  //     homeProduct: store.homeReducer.homeProduct,
+  //     isLoading: store.homeReducer.isLoading,
+  //   };
+  // }, shallowEqual);
+  // const [searchParams] = useSearchParams();
+  // const { category } = useParams();
 
-  let paramsObj = {
-    params: {
-      category: searchParams.getAll("category"),
-    },
-  };
+  // let paramsObj = {
+  //   params: {
+  //     category: searchParams.getAll("category"),
+  //   },
+  // };
 
-  useEffect(() => {
-    if (category) {
-      dispatch(getProduct(paramsObj));
-    }
-  }, [category, dispatch]);
+  // useEffect(() => {
+  //   if (category) {
+  //     dispatch(getProduct(paramsObj));
+  //   }
+  // }, [category, dispatch]);
 
-  const filteredProducts = homeProduct.filter(
-    (product) => product.category === category
-  );
+  // const filteredProducts = homeProduct.filter(
+  //   (product) => product.category === category
+  // );
 
   return (
-    <div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <ul>
-            {filteredProducts.map((product) => (
-              <div key={product.id}>
-                <p>{product.title}</p>
-                <p>{product.brand}</p>
-                <p>{product.price}</p>
-                <p>{product.discount}</p>
-                <p>{product.rating}</p>
-                <p>{product.category}</p>
-              </div>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <PRODUCTS className="products">
+      <SideBar />
+      <ProductList />
+    </PRODUCTS>
   );
 };
 
 export default ProductPage;
+
+const PRODUCTS = styled.div`
+  padding: 2px;
+  max-width: 1500px;
+  margin: auto;
+`;

@@ -19,7 +19,6 @@ import React from "react";
 import { plush } from "../assets";
 import { useSelector } from "react-redux";
 import AdminNavbar from "../Components/AdminNavbar";
-import AdminRoutes from "../Routes/AdminRoutes";
 
 const Admin = () => {
   // const { isOpen, onOpen, onClose } = useDisclosure();

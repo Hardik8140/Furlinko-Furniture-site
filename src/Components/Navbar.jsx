@@ -43,23 +43,27 @@ const Navbar = () => {
     };
   }, shallowEqual);
 
-  const [category, setCategory] = useState(
-    searchParams.getAll("category") || ""
-  );
+  // const [category, setCategory] = useState(
+  //   searchParams.getAll("category") || ""
+  // );
   const navigate = useNavigate();
 
-  const handleLinkClick = (category) => {
-    setCategory(category);
-    setSearchParams({ category: category });
-    navigate(`/products/${category}`);
-  };
+  // const handleLinkClick = (category) => {
+  //   setCategory(category);
+  //   setSearchParams({ category: category });
+  //   navigate(`/products/${category}`);
+  // };
 
-  useEffect(() => {
-    let params = {
-      category,
-    };
-    setSearchParams(params);
-  }, [category]);
+  // useEffect(() => {
+  //   let params = {
+  //     category,
+  //   };
+  //   setSearchParams(params);
+  // }, [category]);
+
+  const handleLinkClick = () => {
+    navigate("/products");
+  };
 
   const handleLogin = () => {
     navigate("/login");
@@ -110,33 +114,37 @@ const Navbar = () => {
               <DrawerCloseButton />
               <DrawerBody>
                 <Box
-                  h="100%"
+                  backgroundColor="blackAlpha.700"
+                  p={2}
+                  color="whitesmoke"
                   fontWeight="semibold"
                   display="flex"
-                  flexDirection="column"
                   justifyContent="space-around"
                 >
                   <Link
-                    to={`/products/Sofas`}
-                    onClick={() => handleLinkClick("Sofa")}
+                    to={`/products`}
+                    // onClick={() => handleLinkClick("Sofa")}
                     _hover={{
                       cursor: "pointer",
                       textDecoration: "underline",
                       color: "white",
                     }}
                   >
-                    Sofa
+                    {/* Sofa */}
+                    Furniture
                   </Link>
                   <Link
-                    to={`/products/Sectional Sofas`}
-                    onClick={() => handleLinkClick("Sectional Sofas")}
+                    to={`/products`}
+                    // to={`/products/Sectional Sofas`}
+                    // onClick={() => handleLinkClick("Sectional Sofas")}
                     _hover={{
                       cursor: "pointer",
                       textDecoration: "underline",
                       color: "white",
                     }}
                   >
-                    Sectional Sofas
+                    {/* Sectional Sofas */}
+                    Sofas & Seating
                   </Link>
                   <Link
                     to={`/products/Sofa Cum Beds`}
@@ -147,7 +155,8 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Sofa Cum Beds
+                    {/* Sofa Cum Beds */}
+                    Mattresses
                   </Link>
                   <Link
                     to={`/products/Futons`}
@@ -158,7 +167,8 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Futons
+                    {/* Futons */}
+                    Home Decor
                   </Link>
                   <Link
                     to={`/products/Chaise Loungers`}
@@ -169,7 +179,8 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Chaise Loungers
+                    {/* Chaise Loungers */}
+                    Furnishings
                   </Link>
                   <Link
                     to={`/products/Bean Bags`}
@@ -180,7 +191,7 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Bean Bags
+                    {/* Bean Bags */}Kitchen & Dining
                   </Link>
                   <Link
                     to={`/products/Recliners`}
@@ -191,7 +202,7 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Recliners
+                    {/* Recliners */}Lamps & Lighting
                   </Link>
                   <Link
                     to={`/products/Gaming Chairs`}
@@ -202,14 +213,14 @@ const Navbar = () => {
                       color: "white",
                     }}
                   >
-                    Gaming Chairs
+                    {/* Gaming Chairs */}Home Utility
                   </Link>
                   <Link
                     to={`/products/Chairs`}
                     onClick={() => handleLinkClick("Chairs")}
                     _hover={{ cursor: "pointer", textDecoration: "underline" }}
                   >
-                    Chairs
+                    {/* Chairs */}Appliances
                   </Link>
                 </Box>
               </DrawerBody>
@@ -367,7 +378,7 @@ const Navbar = () => {
         </Box>
 
         <Box
-          backgroundColor="blackAlpha.600"
+          backgroundColor="blackAlpha.700"
           p={2}
           color="whitesmoke"
           fontWeight="semibold"
@@ -375,99 +386,114 @@ const Navbar = () => {
           justifyContent="space-around"
         >
           <Link
-            to={`/products/Sofas`}
-            onClick={() => handleLinkClick("Sofa")}
+            to={`/products`}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Sofa")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Sofa
+            {/* Sofa */}
+            Furniture
           </Link>
           <Link
-            to={`/products/Sectional Sofas`}
-            onClick={() => handleLinkClick("Sectional Sofas")}
+            to={`/products`}
+            onClick={handleLinkClick}
+            // to={`/products/Sectional Sofas`}
+            // onClick={() => handleLinkClick("Sectional Sofas")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Sectional Sofas
+            {/* Sectional Sofas */}
+            Sofas & Seating
           </Link>
           <Link
             to={`/products/Sofa Cum Beds`}
-            onClick={() => handleLinkClick("Sofa Cum Beds")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Sofa Cum Beds")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Sofa Cum Beds
+            {/* Sofa Cum Beds */}
+            Mattresses
           </Link>
           <Link
             to={`/products/Futons`}
-            onClick={() => handleLinkClick("Futons")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Futons")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Futons
+            {/* Futons */}
+            Home Decor
           </Link>
           <Link
             to={`/products/Chaise Loungers`}
-            onClick={() => handleLinkClick("Chaise Loungers")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Chaise Loungers")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Chaise Loungers
+            {/* Chaise Loungers */}
+            Furnishings
           </Link>
           <Link
             to={`/products/Bean Bags`}
-            onClick={() => handleLinkClick("Bean Bags")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Bean Bags")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Bean Bags
+            {/* Bean Bags */}Kitchen & Dining
           </Link>
           <Link
             to={`/products/Recliners`}
-            onClick={() => handleLinkClick("Recliners")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Recliners")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Recliners
+            {/* Recliners */}Lamps & Lighting
           </Link>
           <Link
             to={`/products/Gaming Chairs`}
-            onClick={() => handleLinkClick("Gaming Chairs")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Gaming Chairs")}
             _hover={{
               cursor: "pointer",
               textDecoration: "underline",
               color: "white",
             }}
           >
-            Gaming Chairs
+            {/* Gaming Chairs */}Home Utility
           </Link>
           <Link
             to={`/products/Chairs`}
-            onClick={() => handleLinkClick("Chairs")}
+            onClick={handleLinkClick}
+            // onClick={() => handleLinkClick("Chairs")}
             _hover={{ cursor: "pointer", textDecoration: "underline" }}
           >
-            Chairs
+            {/* Chairs */}Appliances
           </Link>
         </Box>
       </Box>

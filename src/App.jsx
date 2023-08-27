@@ -6,10 +6,11 @@ import AdminNavbar from "./Components/AdminNavbar";
 import AllRoutes from "./Routes/AllRoutes";
 
 function App() {
-  const isAdminAuth = useSelector((store) => store.adminReducer.isAdminAuth);
+  const isAuth = useSelector((store) => store.loginReducer.isAdminAuth);
   return (
     <Box>
-      {isAdminAuth ? <AdminNavbar /> : <Navbar />}
+      {/* {isAuth ? <AdminNavbar /> : <Navbar />} */}
+      <Navbar />
       <AllRoutes />
       {/* <AdminRoutes /> */}
       <Footer />
