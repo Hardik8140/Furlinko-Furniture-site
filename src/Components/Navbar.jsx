@@ -20,6 +20,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
@@ -218,7 +219,10 @@ const Navbar = () => {
                   <Link
                     to={`/products/Chairs`}
                     onClick={() => handleLinkClick("Chairs")}
-                    _hover={{ cursor: "pointer", textDecoration: "underline" }}
+                    _hover={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
                   >
                     {/* Chairs */}Appliances
                   </Link>
@@ -290,30 +294,38 @@ const Navbar = () => {
           ) : (
             <Button onClick={handleLogin}>Login</Button>
           )}
-          <NewLink to="/notification">
-            <Image
-              _hover={{ cursor: "pointer" }}
-              src={bell}
-              alt="notification"
-              w={{ base: "24px", sm: "32px" }}
-            />
-          </NewLink>
-          <NewLink to="/wishlist">
-            <Image
-              _hover={{ cursor: "pointer" }}
-              src={heart}
-              alt="notification"
-              w={{ base: "24px", sm: "32px" }}
-            />
-          </NewLink>
-          <NewLink to="/cart">
-            <Image
-              _hover={{ cursor: "pointer" }}
-              src={cart}
-              alt="notification"
-              w={{ base: "24px", sm: "32px" }}
-            />
-          </NewLink>
+          <Tooltip label="Notification">
+            <NewLink to="/notification">
+              <Image
+                _hover={{ cursor: "pointer" }}
+                src={bell}
+                alt="notification"
+                w={{ base: "24px", sm: "32px" }}
+              />
+            </NewLink>
+          </Tooltip>
+
+          <Tooltip label="Wishlist">
+            <NewLink to="/wishlist">
+              <Image
+                _hover={{ cursor: "pointer" }}
+                src={heart}
+                alt="notification"
+                w={{ base: "24px", sm: "32px" }}
+              />
+            </NewLink>
+          </Tooltip>
+
+          <Tooltip label="Cart">
+            <NewLink to="/cart">
+              <Image
+                _hover={{ cursor: "pointer" }}
+                src={cart}
+                alt="notification"
+                w={{ base: "24px", sm: "32px" }}
+              />
+            </NewLink>
+          </Tooltip>
         </Box>
       </Box>
 
