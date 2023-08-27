@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Masai",
+      "price": "78686",
+      "image": "https://avatars.githubusercontent.com/u/123854368?s=48&v=4",
+      "category": ""
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "name": "Masai",
+      "noOfProducts": "53",
+      "price": "3442",
+      "totalPrice": "33334346"
+    }
+  ],
+  "users": [
+    {
+      "id": 4,
+      "name": "Hardik",
+      "email": "hardikpatel5769@gmail.com"
+    },
+    {
+      "id": 5,
+      "name": "Urvisha",
+      "email": "hardik8151@outlook.com"
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}
