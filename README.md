@@ -9,7 +9,7 @@ Furlinko.com is a user-friendly Furniture website that provide best product and 
 ### Deployed Link
 
 <div align="center">
-  <a href="https://gas-scarecrow-3264.vercel.app/">Visit Furlinko.com</a>
+  <a href="https://gas-scarecrow-3264.vercel.app/" target="_blank">Visit Furlinko.com</a>
 </div>
 
 ## Features
