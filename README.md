@@ -76,4 +76,6 @@ For any inquiries or support, you can reach me at [hardik.gajera.d.84@gmail.com]
 ![checkout](https://github.com/Hardik8140/gas-scarecrow-3264/assets/123854368/e7582196-6e36-47fb-8e99-1a690f3f76e6)
 
 
-|:----------------------------------------------------------------------------------------------------------------------------------------------------:|
+### 🤝 Connect with me
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://hardik8140.github.io/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hardik-gajera-7563b7254/)
